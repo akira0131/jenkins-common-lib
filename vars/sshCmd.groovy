@@ -4,7 +4,7 @@
 def call(server, cmd)
 {
     // 初期化
-    def config = [], env = [:]
+    //def config = [], env = [:]
 
     // 宣言
     def stdout = new StringBuffer(), stderror = new StringBuffer()
