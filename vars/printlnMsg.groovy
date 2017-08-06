@@ -1,7 +1,7 @@
 #!/usr/bin/groovy
 
 // メッセージ出力メソッド
-def call(string type,string msg)
+def call(type,msg)
 {
     ansiColor('xterm')
     {
