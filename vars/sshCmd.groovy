@@ -47,4 +47,6 @@ def loadEnvConfigSshCmd()
         def env = new ConfigSlurper().parse(new File(config['path'] + "/" + config['file']).toURL())
     }
     catch(Exception e) {}
+
+    return env
 }
