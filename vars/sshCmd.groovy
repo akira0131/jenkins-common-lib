@@ -12,7 +12,7 @@ def call(server, cmd)
     try
     {
         // 設定ファイルロード
-        loadEnvConfigSshCmd
+        loadEnvConfigSshCmd()
 
         // コマンド組立
         def ssh_cmd = [
