@@ -30,5 +30,7 @@ def sshCmd(server, cmd)
     // コマンド結果出力が完了するまで待機
     proc.waitForProcessOutput()
 
-    return stdout,stderr
+    // 実行結果を返却
+    def result = ['stdout':stdout, 'stderror':stderror]
+    return result
 }
