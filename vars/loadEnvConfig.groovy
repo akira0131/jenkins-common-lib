@@ -11,10 +11,7 @@ def call()
         config = ['path':'/opt/app/conf', 'file':'env.groovy']
         env = new ConfigSlurper().parse(new File(config['path'] + "/" + config['file']).toURL())
     }
-    catch(Exception e) {
-
-        println 'ここは通らないよね？'
-    }
+    catch(Exception e) {}
 
     retrun env
 }
