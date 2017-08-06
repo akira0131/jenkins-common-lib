@@ -1,6 +1,7 @@
 #!/usr/bin/groovy
 
 // 設定ファイルロードメソッド
+@NonCPS
 def call()
 {
     // nonserializable対策
@@ -11,7 +12,5 @@ def call()
     }
     catch(Exception e) {}
 
-    println env
-    println env.size()
     return env
 }
