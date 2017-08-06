@@ -12,7 +12,7 @@ def call(server, cmd)
     try
     {
         // 設定ファイルロード
-        loadEnvConfig
+        loadEnvConfigSshCmd
 
         // コマンド組立
         def ssh_cmd = [
@@ -42,7 +42,7 @@ def call(server, cmd)
 
 // 設定ファイルロード
 @NonCPS
-def loadEnvConfig()
+def loadEnvConfigSshCmd()
 {
     try
     {
