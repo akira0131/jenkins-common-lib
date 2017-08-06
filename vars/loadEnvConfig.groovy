@@ -3,11 +3,13 @@
 // 設定ファイルロードメソッド
 def call()
 {
+    def config = [], env = [:]
+
     // nonserializable対策
     try
     {
-        def config = ['path':'/opt/app/conf', 'file':'env.groovy']
-        def env = new ConfigSlurper().parse(new File(config['path'] + "/" + config['file']).toURL())
+        config = ['path':'/opt/app/conf', 'file':'env.groovy']
+        env = new ConfigSlurper().parse(new File(config['path'] + "/" + config['file']).toURL())
     }
     catch(Exception e) {
 

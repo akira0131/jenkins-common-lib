@@ -39,7 +39,5 @@ def call(server, cmd)
         throw e
     }
 
-    // 実行結果を返却
-    def result = ['stdout':stdout, 'stderror':stderror]
-    return result
+    return [stdout, stderror]
 }
