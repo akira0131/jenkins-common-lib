@@ -6,8 +6,19 @@ def call(server, cmd)
     // 宣言
     def stdout = new StringBuffer(), stderror = new StringBuffer()
 
-    //
-    make_cmd(server, cmd)
+    // 設定ファイルロード
+    try {
+        def config = ['path':'/opt/app/conf', 'file':'env.groovy']
+        def env = new ConfigSlurper().parse(new File(config['path'] + "/" + config['file']).toURL())
+    } catch(Exception e) {}
+
+    // コマンド組立
+    def ssh_cmd = [
+        ('ssh -i ' + env.session.ssh."${server}".identity),
+        ('-p '     + env.session.ssh."${server}".port),
+        (            env.session.ssh."${server}".user + '@' + env.session.ssh."${server}".host),
+        (cmd)
+    ].join(' ')
 
     // コマンド実行
     def proc = ssh_cmd.execute()
@@ -21,23 +32,4 @@ def call(server, cmd)
     // 実行結果を返却
     def result = ['stdout':stdout, 'stderror':stderror]
     return result
-}
-
-def make_cmd(server, cmd)
-{
-    // 設定ファイルロード
-    try {
-        def config = ['path':'/opt/app/conf', 'file':'env.groovy']
-        def job = new ConfigSlurper().parse(new File(config['path'] + "/" + config['file']).toURL())
-    } catch(Exception e) {}
-
-    // コマンド組立
-    def ssh_cmd = [
-        ('ssh -i ' + env.session.ssh."${server}".identity),
-        ('-p '     + env.session.ssh."${server}".port),
-        (            env.session.ssh."${server}".user + '@' + env.session.ssh."${server}".host),
-        (cmd)
-    ].join(' ')
-
-    return ssh_cmd
 }
