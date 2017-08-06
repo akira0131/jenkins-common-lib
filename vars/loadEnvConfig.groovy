@@ -13,5 +13,7 @@ def call()
     }
     catch(Exception e) {}
 
+    println env
+    println env.size()
     retrun env
 }
