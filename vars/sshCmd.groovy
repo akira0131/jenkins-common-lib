@@ -17,7 +17,7 @@ def call(server, cmd)
     println env.ssesion.ssh."${server}".identity
     // コマンド組立
     def ssh_cmd = [
-        ('ssh -i ' + env.session.ssh."${server}".identity),
+        ('ssh -i ' + System.properties.'user.home' + '/.ssh/id_rsa'),
         ('-p '     + env.session.ssh."${server}".port),
         (            env.session.ssh."${server}".user + '@' + env.session.ssh."${server}".host),
         (cmd)
