@@ -3,6 +3,7 @@
 // SSHコマンド実行メソッド
 def call(server, cmd)
 {
+    def config = [], env = [:]
     // 宣言
     def stdout = new StringBuffer(), stderror = new StringBuffer()
 
@@ -11,8 +12,8 @@ def call(server, cmd)
         // 設定ファイルロード
         try
         {
-            def config = ['path':'/opt/app/conf', 'file':'env.groovy']
-            def env = new ConfigSlurper().parse(new File(config['path'] + "/" + config['file']).toURL())
+            config = ['path':'/opt/app/conf', 'file':'env.groovy']
+            env = new ConfigSlurper().parse(new File(config['path'] + "/" + config['file']).toURL())
         }
         catch(Exception e) {}
 
