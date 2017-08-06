@@ -3,8 +3,6 @@
 // 設定ファイルロードメソッド
 def call()
 {
-    def config = [], env = [:]
-
     // nonserializable対策
     try
     {
