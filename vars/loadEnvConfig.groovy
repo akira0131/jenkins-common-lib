@@ -4,10 +4,10 @@
 def call()
 {
     // nonserializable対策
-    try {
+    try
+    {
         def config = ['path':'/opt/app/conf', 'file':'env.groovy']
-        def job = new ConfigSlurper().parse(new File(config['path'] + "/" + config['file']).toURL())
-    } catch(Exception e) {}
-
-    return this
+        def env = new ConfigSlurper().parse(new File(config['path'] + "/" + config['file']).toURL())
+    }
+    catch(Exception e) {}
 }
