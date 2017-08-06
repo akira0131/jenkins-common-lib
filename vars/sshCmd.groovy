@@ -13,6 +13,8 @@ def call(server, cmd)
         def env = new ConfigSlurper().parse(new File(config['path'] + "/" + config['file']).toURL())
     } catch(Exception e) {}
 
+    println env.ssesion.ssh.webap.identity
+    println env.ssesion.ssh."${server}".identity
     // コマンド組立
     def ssh_cmd = [
         ('ssh -i ' + env.session.ssh."${server}".identity),
