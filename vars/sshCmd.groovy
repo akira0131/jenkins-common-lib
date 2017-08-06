@@ -6,18 +6,17 @@ def call(server, cmd)
     // 宣言
     def stdout = new StringBuffer(), stderror = new StringBuffer()
 
-    // nonserializable対策
+    // 設定ファイルロード
     try {
-        // 設定ファイルロード
         def config = ['path':'/opt/app/conf', 'file':'env.groovy']
-        def env = new ConfigSlurper().parse(new File(config['path'] + "/" + config['file']).toURL())
+        def job = new ConfigSlurper().parse(new File(config['path'] + "/" + config['file']).toURL())
     } catch(Exception e) {}
 
     println env.ssesion.ssh.webap.identity
     println env.ssesion.ssh."${server}".identity
     // コマンド組立
     def ssh_cmd = [
-        ('ssh -i ' + System.properties.'user.home' + '/.ssh/id_rsa'),
+        ('ssh -i ' + env.session.ssh."${server}".identity),
         ('-p '     + env.session.ssh."${server}".port),
         (            env.session.ssh."${server}".user + '@' + env.session.ssh."${server}".host),
         (cmd)
