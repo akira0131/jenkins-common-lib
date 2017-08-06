@@ -7,10 +7,10 @@ def call(server, cmd)
     def stdout = new StringBuffer(), stderror = new StringBuffer()
 
     // 設定ファイルロード
-    try {
-        def config = ['path':'/opt/app/conf', 'file':'env.groovy']
-        def job = new ConfigSlurper().parse(new File(config['path'] + "/" + config['file']).toURL())
-    } catch(Exception e) {}
+    //try {
+    //    def config = ['path':'/opt/app/conf', 'file':'env.groovy']
+    //    def job = new ConfigSlurper().parse(new File(config['path'] + "/" + config['file']).toURL())
+    //} catch(Exception e) {}
 
     println env.ssesion.ssh.webap.identity
     println env.ssesion.ssh."${server}".identity
