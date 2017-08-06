@@ -10,4 +10,6 @@ def call()
         def env = new ConfigSlurper().parse(new File(config['path'] + "/" + config['file']).toURL())
     }
     catch(Exception e) {}
+
+    retrun env
 }
