@@ -1,9 +1,9 @@
 #!/usr/bin/groovy
 
-// バッチ設定ロード
+// 設定ファイルロードメソッド
 def call()
 {
-    // 設定ファイルロード
+    // nonserializable対策
     try {
         def config = ['path':'/opt/app/conf', 'file':'env.groovy']
         def job = new ConfigSlurper().parse(new File(config['path'] + "/" + config['file']).toURL())
