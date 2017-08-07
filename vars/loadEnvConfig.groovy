@@ -4,7 +4,7 @@
 def call(env)
 {
     def config = ['path':'/opt/app/conf', 'file':'env.yml']
-    def env = readYaml(
+    env = readYaml(
         file: config['path'] + "/" + config['file']
     )
 
