@@ -25,7 +25,7 @@ def call(env, server, cmd)
     // 標準エラー出力が発生している場合は、標準エラー出力も返却する
     if(stderror.size() == 0)
     {
-        return stdout
+        return ['stdout':stdout, 'stderror':'']
     }
     else {
         return ['stdout':stdout, 'stderror':stderror]
