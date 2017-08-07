@@ -1,16 +1,10 @@
 #!/usr/bin/groovy
 
 // SSHコマンド実行メソッド
-def call(server, cmd)
+def call(server, cmd, stdout, stderror)
 {
-    // 宣言
-    def stdout = new StringBuffer(), stderror = new StringBuffer()
-
     try
     {
-        // 設定ファイルロード
-        loadEnvConfigSshCmd()
-
         // コマンド組立
         def ssh_cmd = [
             ('ssh -i ' + env.session.ssh."${server}".identity),
@@ -35,16 +29,4 @@ def call(server, cmd)
     }
 
     return [stdout, stderror]
-}
-
-// 設定ファイルロード
-@NonCPS
-def loadEnvConfigSshCmd()
-{
-    try
-    {
-        config = ['path':'/opt/app/conf', 'file':'env.groovy']
-        env = new ConfigSlurper().parse(new File(config['path'] + "/" + config['file']).toURL())
-    }
-    catch(Exception e) {}
 }
