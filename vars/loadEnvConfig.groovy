@@ -1,13 +1,12 @@
 #!/usr/bin/groovy
 
 // 設定ファイルロードメソッド
-@NonCPS
-def call()
+def call(env)
 {
     // nonserializable対策
     try
     {
-        config = ['path':'/opt/app/conf', 'file':'env.groovy']
+        def config = ['path':'/opt/app/conf', 'file':'env.groovy']
         env = new ConfigSlurper().parse(new File(config['path'] + "/" + config['file']).toURL())
     }
     catch(Exception e) {}
