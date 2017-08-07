@@ -1,8 +1,10 @@
 #!/usr/bin/groovy
 
 // SSHコマンド実行メソッド
-def call(server, cmd, stdout, stderror, env)
+def call(env, server, cmd)
 {
+    def stdout = new StringBuffer(), stderror = new StringBuffer()
+
     try
     {
         // コマンド組立
