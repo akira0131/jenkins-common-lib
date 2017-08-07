@@ -28,6 +28,6 @@ def call(env, server, cmd)
         return stdout
     }
     else {
-        return [stdout, stderror]
+        return ['stdout':stdout, 'stderror':stderror]
     }
 }
