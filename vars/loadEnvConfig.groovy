@@ -7,6 +7,6 @@ def call(env)
     env = readYaml(
         file: config['path'] + "/" + config['file']
     )
-
+    println 'env.resource.monitor.wu.execute.faital.keyword:' env.resource.monitor.wu.execute.faital.keyword
     return env
 }
