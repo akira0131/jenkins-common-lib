@@ -22,7 +22,7 @@ def call(env, server, cmd)
     // コマンド結果出力が完了するまで待機
     proc.waitForProcessOutput()
 
-    // 標準エラー出力が発生している場合は、標準エラー出力も返却する
+    // 標準エラーが発生している場合は、標準エラーも返却する
     if(stderror.size() == 0)
     {
         return ['stdout':stdout]
