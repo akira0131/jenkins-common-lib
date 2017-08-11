@@ -3,13 +3,13 @@
 // SSHコマンド実行メソッド
 def call(server, cmd)
 {
-    stdout = new StringBuffer(), stderror = new StringBuffer()
+    def stdout = new StringBuffer(), stderror = new StringBuffer()
 
     // AP設定ロード
-    env = loadEnvConfig()
+    def env = loadEnvConfig()
 
     // コマンド組立
-    ssh_cmd = [
+    def ssh_cmd = [
         ('ssh -i ' + env.session.ssh."${server}".identity),
         ('-p '     + env.session.ssh."${server}".port),
         (            env.session.ssh."${server}".user + '@' + env.session.ssh."${server}".host),
@@ -17,7 +17,7 @@ def call(server, cmd)
     ].join(' ')
 
     // コマンド実行
-    proc = ssh_cmd.execute()
+    def proc = ssh_cmd.execute()
 
     // コマンド結果保存先設定
     proc.consumeProcessOutput(stdout, stderror)
