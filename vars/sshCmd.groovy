@@ -1,12 +1,15 @@
 #!/usr/bin/groovy
 
 // SSHコマンド実行メソッド
-def call(env, server, cmd)
+def call(server, cmd)
 {
-    def stdout = new StringBuffer(), stderror = new StringBuffer()
+    stdout = new StringBuffer(), stderror = new StringBuffer()
+
+    // AP設定ロード
+    env = loadEnvConfig()
 
     // コマンド組立
-    def ssh_cmd = [
+    ssh_cmd = [
         ('ssh -i ' + env.session.ssh."${server}".identity),
         ('-p '     + env.session.ssh."${server}".port),
         (            env.session.ssh."${server}".user + '@' + env.session.ssh."${server}".host),
@@ -14,7 +17,7 @@ def call(env, server, cmd)
     ].join(' ')
 
     // コマンド実行
-    def proc = ssh_cmd.execute()
+    proc = ssh_cmd.execute()
 
     // コマンド結果保存先設定
     proc.consumeProcessOutput(stdout, stderror)
