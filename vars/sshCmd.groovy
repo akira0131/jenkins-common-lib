@@ -30,43 +30,17 @@ def call(server, cmd)
     // コマンド結果出力が完了するまで待機
     proc.waitForProcessOutput()
 
-    // コマンド結果をファイルに出力
-    WriteBufferToFile()
-
     // 標準エラーが発生している場合は、標準エラーも返却する
     if(stderror.size() == 0)
     {
-        return ['stdout':stdout]
-    }
-    else {
-        return ['stdout':stdout, 'stderror':stderror]
-    }
-}
-
-@NonCPS
-def WriteBufferToFile()
-{
-    printMsg('info', 'コマンド結果をファイルに出力します。')
-
-    if(stderror.size() == 0)
-    {
-        // 標準出力
         temp = ['path':'/opt/var/jenkins/temp', 'file': 'result_ssh_cmd_stdout_' + server + '.log']
         printMsg('info', '標準出力結果出力先: ' + temp['path'] + "/" + temp['file'])
         f = new File(temp['path'] + "/" + temp['file'])
         f.write(stdout)
+
+        return ['stdout':stdout]
     }
     else {
-        // 標準出力
-        temp = ['path':'/opt/var/jenkins/temp', 'file': 'result_ssh_cmd_wu_execute_cnt_stdout_' + server + '.log']
-        printMsg('info', '標準出力結果出力先: ' + temp['path'] + "/" + temp['file'])
-        f = new File(temp['path'] + "/" + temp['file'])
-        f.write(stdout)
-
-        // 標準エラー出力
-        temp = ['path':'/opt/var/jenkins/temp', 'file': 'result_ssh_cmd_wu_execute_cnt_stderror_' + server + '.log']
-        printMsg('info', '標準エラー出力結果出力先: ' + temp['path'] + "/" + temp['file'])
-        f = new File(temp['path'] + "/" + temp['file'])
-        f.write(stderror)
+        return ['stdout':stdout, 'stderror':stderror]
     }
 }
