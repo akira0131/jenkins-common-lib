@@ -17,9 +17,9 @@ def call(server, cmd)
     ].join(' ')
 
     // 開始メッセージ
-    printMsg('info', 'SSHコマンドを実行します。')
-    printMsg('info', 'Command Param: server = ' + server)
-    printMsg('info', 'Command Param: command = ' + cmd)
+    //printMsg('info', 'SSHコマンドを実行します。')
+    //printMsg('info', 'Command Param: server = ' + server)
+    //printMsg('info', 'Command Param: command = ' + cmd)
 
     // コマンド実行
     def proc = ssh_cmd.execute()
@@ -31,7 +31,16 @@ def call(server, cmd)
     proc.waitForProcessOutput()
 
     // コマンド結果をファイルに出力
-    printMsg('info', 'コマンド結果をファイルに出力します。')
+    //printMsg('info', 'コマンド結果をファイルに出力します。')
+
+    //if(stderror.size() == 0)
+    //{
+        // 標準出力
+    //    temp = ['path':'/opt/var/jenkins/temp', 'file': 'result_ssh_cmd_stdout_' + server + '.log']
+    //}
+    //else {
+    //    return ['stdout':stdout, 'stderror':stderror]
+    //}
 
     // 標準エラーが発生している場合は、標準エラーも返却する
     if(stderror.size() == 0)
