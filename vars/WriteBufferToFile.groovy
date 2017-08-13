@@ -10,7 +10,12 @@ def call(data, fileName)
     printMsg('info', '標準出力結果出力先: ' + temp['path'] + "/" + temp['file'])
 
     // ファイルが既に存在していた場合は削除する
-    new File(temp['path'] + "/" + temp['file']).withWriterAppend { writer ->
-    writer < data
-}
+    File f = new File(temp['path'] + "/" + temp['file'])
+    if(f.exists())
+    {
+        f.delete()
+        printMsg ('info', '書込対象のファイルが既に存在しているため、削除しました。')
+    }
+
+    BufferedReader br = new BufferedReader(new FileReader(f));
 }
