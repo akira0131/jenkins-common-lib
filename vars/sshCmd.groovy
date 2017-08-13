@@ -38,19 +38,19 @@ def call(server, cmd)
         // 標準出力
         temp = ['path':'/opt/var/jenkins/temp', 'file': 'result_ssh_cmd_wu_execute_cnt_stdout_' + server + '.log']
         printMsg('info', '標準出力結果出力先: ' + temp['path'] + "/" + temp['file'])
-        WriteBufferToFile(stdout,temp['path'] + "/" + temp['file'])
+        //WriteBufferToFile(stdout,temp['path'] + "/" + temp['file'])
     }
     else
     {
         // 標準出力
         temp = ['path':'/opt/var/jenkins/temp', 'file': 'result_ssh_cmd_wu_execute_cnt_stdout_' + server + '.log']
         printMsg('info', '標準出力結果出力先: ' + temp['path'] + "/" + temp['file'])
-        WriteBufferToFile(stdout,temp['path'] + "/" + temp['file'])
+        //WriteBufferToFile(stdout,temp['path'] + "/" + temp['file'])
 
         // 標準エラー出力
         temp = ['path':'/opt/var/jenkins/temp', 'file': 'result_ssh_cmd_wu_execute_cnt_stderror_' + server + '.log']
         printMsg('info', '標準エラー出力結果出力先: ' + temp['path'] + "/" + temp['file'])
-        WriteBufferToFile(stderror,temp['path'] + "/" + temp['file'])
+        //WriteBufferToFile(stderror,temp['path'] + "/" + temp['file'])
     }
 
     // コマンド結果を返却
