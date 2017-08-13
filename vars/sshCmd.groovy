@@ -3,7 +3,7 @@
 // SSHコマンド実行メソッド
 def call(server, cmd)
 {
-    stdout = new StringBuffer(), stderror = new StringBuffer()
+    def stdout = new StringBuffer(), stderror = new StringBuffer()
 
     // AP設定ロード
     config = loadAppConfig()

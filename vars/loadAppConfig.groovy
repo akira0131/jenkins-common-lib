@@ -7,7 +7,7 @@ def call()
     def config = ['path':'/opt/app/conf', 'file':'env.yml']
 
     printMsg('info', 'ファイルからプロパティをロードします。')
-    printMsg('info', '出力先: ' + config['path'] + "/" + config['file'])
+    printMsg('info', '入力先: ' + config['path'] + "/" + config['file'])
 
     def env = readYaml(
         file: config['path'] + "/" + config['file']
