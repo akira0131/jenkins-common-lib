@@ -63,10 +63,3 @@ def call(server, cmd)
         return ['stdout':stdout, 'stderror':stderror]
     }
 }
-
-@NonCPS
-def WriteBufferToFile(data, fileName)
-{
-    File f = new File(fileName)
-    f.write(data)
-}
