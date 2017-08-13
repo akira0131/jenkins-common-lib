@@ -30,6 +30,8 @@ def call(server, cmd)
     // コマンド結果出力が完了するまで待機
     proc.waitForProcessOutput()
 
+    printMsg('info', 'コマンド結果をファイルに出力します。')
+
     // コマンド結果をファイルに出力
     //printMsg('info', 'コマンド結果をファイルに出力します。')
 
