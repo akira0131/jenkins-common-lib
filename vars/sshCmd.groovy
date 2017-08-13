@@ -18,8 +18,8 @@ def call(server, cmd)
 
     // 開始メッセージ
     printMsg('info', 'SSHコマンドを実行します。')
-    printMsg('info', 'Command Param: server[' + server + ']')
-    printMsg('info', 'Command Param: command[' + cmd + ']')
+    printMsg('info', 'Command Param: server = ' + server)
+    printMsg('info', 'Command Param: command = ' + cmd)
 
     // コマンド実行
     def proc = ssh_cmd.execute()
@@ -38,25 +38,19 @@ def call(server, cmd)
         // 標準出力
         temp = ['path':'/opt/var/jenkins/temp', 'file': 'result_ssh_cmd_wu_execute_cnt_stdout_' + server + '.log']
         printMsg('info', '標準出力結果出力先: ' + temp['path'] + "/" + temp['file'])
-
-        f = new File(temp['path'] + "/" + temp['file'])
-        f.write(stdout)
+        WriteBufferToFile(stdout,temp['path'] + "/" + temp['file'])
     }
     else
     {
         // 標準出力
         temp = ['path':'/opt/var/jenkins/temp', 'file': 'result_ssh_cmd_wu_execute_cnt_stdout_' + server + '.log']
         printMsg('info', '標準出力結果出力先: ' + temp['path'] + "/" + temp['file'])
-
-        f = new File(temp['path'] + "/" + temp['file'])
-        f.write(stdout)
+        WriteBufferToFile(stdout,temp['path'] + "/" + temp['file'])
 
         // 標準エラー出力
         temp = ['path':'/opt/var/jenkins/temp', 'file': 'result_ssh_cmd_wu_execute_cnt_stderror_' + server + '.log']
         printMsg('info', '標準エラー出力結果出力先: ' + temp['path'] + "/" + temp['file'])
-
-        f = new File(temp['path'] + "/" + temp['file'])
-        f.write(stderror)
+        WriteBufferToFile(stderror,temp['path'] + "/" + temp['file'])
     }
 
     // コマンド結果を返却
@@ -68,4 +62,11 @@ def call(server, cmd)
     {
         return ['stdout':stdout, 'stderror':stderror]
     }
+}
+
+@NonCPS
+def WriteBufferToFile(data, fileName)
+{
+    File f = new File(fileName)
+    f.write(data)
 }
