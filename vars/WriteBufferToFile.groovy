@@ -17,5 +17,6 @@ def call(data, fileName)
         printMsg ('info', '書込対象のファイルが既に存在しているため、削除しました。')
     }
 
-    BufferedReader br = new BufferedReader(new FileReader(f));
+    //BufferedReader br = new BufferedReader(new FileReader(f));
+    BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 }
