@@ -33,11 +33,6 @@ def call(server, cmd)
     // 標準エラーが発生している場合は、標準エラーも返却する
     if(stderror.size() == 0)
     {
-        temp = ['path':'/opt/var/jenkins/temp', 'file': 'result_ssh_cmd_stdout_' + server + '.log']
-        printMsg('info', '標準出力結果出力先: ' + temp['path'] + "/" + temp['file'])
-        f = new File(temp['path'] + "/" + temp['file'])
-        f.write(stdout)
-
         return ['stdout':stdout]
     }
     else {
