@@ -19,4 +19,5 @@ def call(data, fileName)
 
     //BufferedReader br = new BufferedReader(new FileReader(f));
     BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+    bw.write(data);
 }
