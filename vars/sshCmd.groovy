@@ -39,7 +39,7 @@ def call(server, cmd)
         temp = ['path':'/opt/var/jenkins/temp', 'file': 'result_ssh_cmd_wu_execute_cnt_stdout_' + server + '.log']
         printMsg('info', '標準出力結果出力先: ' + temp['path'] + "/" + temp['file'])
 
-        File f = new File(temp['path'] + "/" + temp['file'])
+        f = new File(temp['path'] + "/" + temp['file'])
         f.write(stdout)
     }
     else
@@ -48,14 +48,14 @@ def call(server, cmd)
         temp = ['path':'/opt/var/jenkins/temp', 'file': 'result_ssh_cmd_wu_execute_cnt_stdout_' + server + '.log']
         printMsg('info', '標準出力結果出力先: ' + temp['path'] + "/" + temp['file'])
 
-        File f = new File(temp['path'] + "/" + temp['file'])
+        f = new File(temp['path'] + "/" + temp['file'])
         f.write(stdout)
 
         // 標準エラー出力
         temp = ['path':'/opt/var/jenkins/temp', 'file': 'result_ssh_cmd_wu_execute_cnt_stderror_' + server + '.log']
         printMsg('info', '標準エラー出力結果出力先: ' + temp['path'] + "/" + temp['file'])
 
-        File f = new File(temp['path'] + "/" + temp['file'])
+        f = new File(temp['path'] + "/" + temp['file'])
         f.write(stderror)
     }
 
