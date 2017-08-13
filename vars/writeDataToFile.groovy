@@ -4,14 +4,13 @@
 def call(data, filename)
 {
     // 書込対象のファイル
-    def temp = ['path':'/opt/var/jenkins/temp', 'file': filename + '.yml']
+    def config = ['path':'/opt/var/jenkins/temp', 'file': 'result_job_judge_' + filename + '.yml']
 
     printMsg('info', 'データをファイルに出力します。')
-    printMsg('info', '出力形式: YAML')
-    printMsg('info', '出力先: ' + temp['path'] + "/" + temp['file'])
+    printMsg('info', '出力先: ' + config['path'] + "/" + config['file'])
 
     // ファイルが既に存在していた場合は削除する
-    File f = new File(temp['path'] + "/" + temp['file'])
+    File f = new File(config['path'] + "/" + config['file'])
     if(f.exists())
     {
         f.delete()
@@ -20,7 +19,7 @@ def call(data, filename)
 
     // Yaml形式で書込
     writeYaml(
-        file: temp['path'] + "/" + temp['file'],
+        file: config['path'] + "/" + config['file'],
         data: data
     )
 }

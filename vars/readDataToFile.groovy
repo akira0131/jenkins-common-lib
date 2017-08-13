@@ -1,12 +1,12 @@
 #!groovy
 
 // 設定ファイルロードメソッド
-def call()
+def call(filename)
 {
     // 読込対象のファイル
-    def config = ['path':'/opt/app/conf', 'file':'env.yml']
+    def temp = ['path':'/opt/var/jenkins/temp', 'file': 'result_job_judge_' + filename + '.yml']
 
-    printMsg('info', 'ファイルからプロパティをロードします。')
+    printMsg('info', 'ファイルからデータを読込みます。')
     printMsg('info', '出力先: ' + config['path'] + "/" + config['file'])
 
     def env = readYaml(
