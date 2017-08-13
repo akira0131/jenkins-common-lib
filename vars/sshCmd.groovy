@@ -19,7 +19,7 @@ def call(server, cmd)
     // 開始メッセージ
     //printMsg('info', 'SSHコマンドを実行します。')
     //printMsg('info', 'Command Param: server = ' + server)
-    //printMsg('info', 'Command Param: command = ' + cmd)
+    printMsg('info', 'Command Param: command = ' + cmd)
 
     // コマンド実行
     def proc = ssh_cmd.execute()
