@@ -16,6 +16,11 @@ def call(server, cmd)
         (cmd)
     ].join(' ')
 
+    // 開始メッセージ
+    printMsg('info', 'SSHコマンドを実行します。')
+    printMsg('info', 'Command Param: server = ' + server)
+    printMsg('info', 'Command Param: command = ' + cmd)
+
     // コマンド実行
     def proc = ssh_cmd.execute()
 
@@ -24,6 +29,9 @@ def call(server, cmd)
 
     // コマンド結果出力が完了するまで待機
     proc.waitForProcessOutput()
+
+    // コマンド結果をファイルに出力
+    printMsg('info', 'コマンド結果をファイルに出力します。')
 
     // 標準エラーが発生している場合は、標準エラーも返却する
     if(stderror.size() == 0)
