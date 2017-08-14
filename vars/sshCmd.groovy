@@ -31,11 +31,11 @@ def call(server, cmd)
     proc.waitForProcessOutput()
 
     // コマンド結果をファイルに書き出す
-    writeBufferToFile()
+    writeBufferToFile(stdout, stderror)
 
 }
 
-def writeBufferToFile()
+def writeBufferToFile(stdout, stderror)
 {
     // 標準エラーが発生している場合は、標準エラーもファイルに書き出す
     if(stderror.size() == 0)
