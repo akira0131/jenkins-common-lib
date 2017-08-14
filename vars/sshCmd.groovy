@@ -33,14 +33,33 @@ def call(server, cmd)
     // コマンド結果をファイルに書き出す
     writeBufferToFile(stdout, stderror)
 
+    // 標準エラーが発生している場合は、標準エラーも返却する
+    if(stderror.size() == 0)
+    {
+        // ファイル読込み
+        stringStdout = new File('/opt/var/jenkins/temp/ssh_cmd_stdout.txt').text
+
+        return ['stdout':stringStdout]
+    }
+    else
+    {
+        // ファイル読込み
+        stringStdout = new File('/opt/var/jenkins/temp/ssh_cmd_stdout.txt').text
+        stringStderror = new File('/opt/var/jenkins/temp/ssh_cmd_stderror.txt').text
+
+        return ['stdout':stringStdout, 'stderror':stringStderror]
+    }
 }
 
+// コマンド結果をファイルに書き出すメソッド
 def writeBufferToFile(stdout, stderror)
 {
     // 標準エラーが発生している場合は、標準エラーもファイルに書き出す
     if(stderror.size() == 0)
     {
-        // コマンド結果の標準出力を書き出すインスタンス生成
+        // 標準出力
+
+        // コマンド結果を書き出すインスタンス生成
         BufferedWriter bwout = new BufferedWriter(new FileWriter(new File('/opt/var/jenkins/temp/ssh_cmd_stdout.txt')))
 
         // 書き出すデータをセット
@@ -51,25 +70,35 @@ def writeBufferToFile(stdout, stderror)
 
         // 処理反映
         bwout.close()
-        //return ['stdout':stdout]
     }
     else
     {
+        // 標準出力
+
         // コマンド結果を書き出すインスタンス生成
         BufferedWriter bwout = new BufferedWriter(new FileWriter(new File('/opt/var/jenkins/temp/ssh_cmd_stdout.txt')))
-        BufferedWriter bwerror = new BufferedWriter(new FileWriter(new File('/opt/var/jenkins/temp/ssh_cmd_stderror.txt')))
 
         // 書き出すデータをセット
         bwout.write(stdout.toString())
-        bwerror.write(stderror.toString())
 
         // メモリからファイルに書き出す
         bwout.flush()
-        bwerror.flush()
 
         // 処理反映
         bwout.close()
+
+        // 標準エラー出力
+
+        // コマンド結果を書き出すインスタンス生成
+        BufferedWriter bwerror = new BufferedWriter(new FileWriter(new File('/opt/var/jenkins/temp/ssh_cmd_stderror.txt')))
+
+        // 書き出すデータをセット
+        bwerror.write(stderror.toString())
+
+        // メモリからファイルに書き出す
+        bwerror.flush()
+
+        // 処理反映
         bwerror.close()
-        //return ['stdout':stdout, 'stderror':stderror]
     }
 }
