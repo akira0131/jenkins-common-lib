@@ -1,12 +1,9 @@
 #!groovy
 
 // SSHコマンド実行メソッド
-def call(server, cmd)
+def call(env, server, cmd)
 {
     def stdout = new StringBuffer(), stderror = new StringBuffer()
-
-    // AP設定ロード
-    def config = loadAppConfig()
 
     // コマンド組立
     def ssh_cmd = [
