@@ -1,12 +1,12 @@
 #!groovy
 
-// 変数をファイルに書き出すメソッド
+// ジョブ結果をファイルに書き出すメソッド
 def call(data, filename)
 {
     // 書込対象のファイル
-    def config = ['path':'/opt/var/jenkins/temp', 'file': 'result_job_judge_' + filename + '.yml']
+    def config = ['path':'/opt/var/jenkins/temp', 'file': 'result_job_' + filename + '.yml']
 
-    printMsg('info', 'データをファイルに出力します。')
+    printMsg('info', 'ジョブ結果をファイルに出力します。')
     printMsg('info', '出力先: ' + config['path'] + "/" + config['file'])
 
     // ファイルが既に存在していた場合は削除する

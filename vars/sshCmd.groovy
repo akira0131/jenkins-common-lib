@@ -1,7 +1,7 @@
 #!groovy
 
 // SSHコマンド実行メソッド
-def call(env, server, cmd)
+def call(config, server, cmd)
 {
     def stdout = new StringBuffer(), stderror = new StringBuffer()
 
@@ -12,11 +12,6 @@ def call(env, server, cmd)
         (            config.session.ssh."${server}".user + '@' + config.session.ssh."${server}".host),
         (cmd)
     ].join(' ')
-
-    // 開始メッセージ
-    printMsg('info', 'SSHコマンドを実行します。')
-    printMsg('info', 'Command Param: server = ' + server)
-    printMsg('info', 'Command Param: command = ' + cmd)
 
     // コマンド実行
     def proc = ssh_cmd.execute()

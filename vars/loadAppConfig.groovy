@@ -4,14 +4,15 @@
 def call()
 {
     // 読込対象のファイル
-    def config = ['path':'/opt/app/conf', 'file':'env.yml']
+    def file = ['path':'/opt/app/conf', 'name':'env.yml']
 
     printMsg('info', 'ファイルからプロパティをロードします。')
-    printMsg('info', '入力先: ' + config['path'] + "/" + config['file'])
+    printMsg('info', '入力元: ' + file['path'] + "/" + file['name'])
 
-    def env = readYaml(
-        file: config['path'] + "/" + config['file']
+    // Yaml形式を読込
+    def config = readYaml(
+        file: file['path'] + "/" + file['name']
     )
 
-    return env
+    return config
 }
